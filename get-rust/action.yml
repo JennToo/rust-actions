@@ -12,6 +12,10 @@ inputs:
     description: "Make this the default toolchain as well"
     default: true
     required: false
+  components:
+    description: "A space-separated list of components to install"
+    default: "clippy rustfmt"
+    required: false
 runs:
   using: "node12"
   main: "action.js"

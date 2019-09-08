@@ -13,5 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: ./get-rust
+      - run: "cargo clippy -- -Dwarnings"
+        working-directory: test/test_rust_package
+      - run: "cargo fmt -- --check"
+        working-directory: test/test_rust_package
       - run: "cargo test"
         working-directory: test/test_rust_package
