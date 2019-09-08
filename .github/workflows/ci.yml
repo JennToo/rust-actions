@@ -1,0 +1,9 @@
+on: push
+name: CI Tests
+jobs:
+  ci:
+    name: CI Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: ./get-rust
