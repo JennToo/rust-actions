@@ -1,0 +1,17 @@
+name: "Get Rust"
+description: "Obtain a specific version of Rust"
+author: "Jennifer Wilcox"
+inputs:
+  version:
+    description: >
+      The version to obtain. Can be a specific version number or a channel
+      (e.g. stable, beta, nightly, etc)
+    default: "stable"
+    required: false
+  make_default:
+    description: "Make this the default toolchain as well"
+    default: true
+    required: false
+runs:
+  using: "node12"
+  main: "action.js"
