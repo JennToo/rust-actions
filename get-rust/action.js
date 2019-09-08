@@ -35,7 +35,7 @@ async function install_rustup_and_toolchain() {
     await spawnAsync(command, [], { "stdio": "inherit", "shell": true });
     const new_path = `${process.env.HOME}/.cargo/bin`
     console.log(`::add-path::${new_path}`);
-    return new_path;
+    return `${new_path}/rustup`;
 }
 
 async function install_components(rustup) {
