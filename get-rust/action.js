@@ -36,6 +36,7 @@ function install_rustup_and_toolchain() {
     const command = `curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain ${version}`
     const proc = spawn(command, [], { "stdio": "inherit", "shell": true });
     proc.on("close", (code) => {
+        console.log(`::add-path::${process.env.HOME}/.cargo/bin`);
         process.exit(code);
     })
     proc.on("error", (err) => {
