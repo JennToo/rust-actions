@@ -22,8 +22,7 @@ function install_toolchain() {
 }
 
 function set_as_default() {
-    console.log(`Making ${version} the default toolchain`);
-    const proc = spawn("rustup", ["default", version]);
+    const proc = spawn("rustup", ["default", version], { "stdio": 'inherit' });
     proc.on("close", (code) => {
         process.exit(code);
     })
@@ -33,4 +32,21 @@ function set_as_default() {
     });
 }
 
-install_toolchain();
+function install_rustup_and_toolchain() {
+    const command = `curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain ${version}`
+    const proc = spawn(command, [], { "stdio": "inherit", "shell": true });
+    proc.on("close", (code) => {
+        process.exit(code);
+    })
+    proc.on("error", (err) => {
+        console.log(`Error while installing rust: ${err}`);
+        process.exit(1);
+    });
+}
+
+if(process.platform === "darwin") {
+    console.log("Detected macOS, installing rustup as well");
+    install_rustup_and_toolchain();
+} else {
+    install_toolchain();
+}
