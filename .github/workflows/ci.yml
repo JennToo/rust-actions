@@ -3,7 +3,13 @@ name: CI Tests
 jobs:
   ci:
     name: CI Tests
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-18.04
+          - windows-2019
+          - macOS-10.14
     steps:
       - uses: actions/checkout@master
       - uses: ./get-rust
