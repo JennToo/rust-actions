@@ -72,6 +72,7 @@ function install_components(rustup) {
     });
 }
 
+console.log("::set-env name=RUST_BACKTRACE::1")
 if(process.platform === "darwin") {
     console.log("Detected macOS, installing rustup as well");
     install_rustup_and_toolchain();
