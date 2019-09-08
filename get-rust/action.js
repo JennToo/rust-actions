@@ -26,8 +26,8 @@ async function install_toolchain() {
     await spawnAsync("rustup", ["toolchain", "install", version], { "stdio": 'inherit' });
 }
 
-async function set_as_default() {
-    await spawnAsync("rustup", ["default", version], { "stdio": 'inherit' });
+async function set_as_default(rustup) {
+    await spawnAsync(rustup, ["default", version], { "stdio": 'inherit' });
 }
 
 async function install_rustup_and_toolchain() {
@@ -59,7 +59,7 @@ async function main() {
         }
 
         if(make_default) {
-            await set_as_default();
+            await set_as_default(rustup);
         }
         await install_components(rustup);
     } catch(e) {
