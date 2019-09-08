@@ -13,3 +13,5 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: ./get-rust
+      - run: "cargo test"
+        working-directory: test/test_rust_package
