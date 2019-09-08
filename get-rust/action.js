@@ -61,7 +61,7 @@ function install_components(rustup) {
         console.log("No components to install");
         process.exit(0);
     }
-    const command = `rustup component add --toolchain ${version} ${components}`;
+    const command = `${rustup} component add --toolchain ${version} ${components}`;
     const proc = spawn(command, [], { "stdio": "inherit", "shell": true });
     proc.on("close", (code) => {
         process.exit(code);
