@@ -32,7 +32,7 @@ async function set_as_default() {
 
 async function install_rustup_and_toolchain() {
     const command = `curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain ${version}`
-    const proc = spawnAsync(command, [], { "stdio": "inherit", "shell": true });
+    await spawnAsync(command, [], { "stdio": "inherit", "shell": true });
     const new_path = `${process.env.HOME}/.cargo/bin`
     console.log(`::add-path::${new_path}`);
     return new_path;
